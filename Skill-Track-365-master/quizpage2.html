@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Education Platform - Quiz</title>
+    <style>
+        /* Your existing CSS styles here */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-container h2 {
+            color: #333;
+        }
+
+        .domain-selection {
+            margin-bottom: 20px;
+        }
+
+        .domain-option {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options {
+            margin-top: 10px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+        }
+
+        .submit-button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h2>Course Recommendation Quiz</h2>
+    
+        <div class="domain-selection">
+            <label for="domain">Select Your Domain:</label>
+            <select id="domain" name="domain" class="domain-option">
+                <option value="web-development">Web Development</option>
+                <option value="python-programming">Python Programming</option>
+                <option value="java-oops">OOPS with Java</option>
+                <option value="dbms">Database Management System</option>
+            </select>
+            <button onclick="startQuiz()">Start Quiz</button>
+        </div>
+    
+        <div class="question" id="question-container">
+            <!-- Questions and options will be dynamically populated based on the selected domain -->
+        </div>
+    
+        <button class="submit-button" onclick="submitQuiz()">Submit</button>
+    </div>
+    
+    <script>
+        const questionsByDomain = {
+            'web-development': [
+                {
+                    question: 'What is HTML?',
+                    options: [
+                        'Hypertext Markup Language',
+                        'High-Level Text Modeling Language',
+                        'Hyperlink and Text Management Language',
+                        'Home Tool Markup Language'
+                    ]
+                },
+                {
+                    question: 'What is CSS?',
+                    options: [
+                        'Cascading Style Sheets',
+                        'Computer Style Sheets',
+                        'Colorful Style Sheets',
+                        'Creative Style Sheets'
+                    ]
+                },
+                {
+                    question: 'What is JavaScript?',
+                    options: [
+                        'A scripting language for HTML and web development',
+                        'A style sheet language used for web design',
+                        'A database management language',
+                        'A hardware programming language'
+                    ]
+                }
+            ],
+            'python-programming': [
+                {
+                    question: 'What is Python?',
+                    options: [
+                        'A high-level programming language',
+                        'A type of snake',
+                        'A data analysis tool',
+                        'A game development framework'
+                    ]
+                },
+                {
+                    question: 'How does Python differ from other programming languages?',
+                    options: [
+                        'Python emphasizes code readability and ease of use',
+                        'Python is primarily used for mathematical computations',
+                        'Python is a low-level programming language',
+                        'Python does not support object-oriented programming'
+                    ]
+                },
+                {
+                    question: 'What are Python libraries used for?',
+                    options: [
+                        'To extend the functionality of Python',
+                        'To create Python scripts',
+                        'To define Python variables',
+                        'To store Python code'
+                    ]
+                }
+            ],
+            'java-oops': [
+                {
+                    question: 'Explain the concept of Object-Oriented Programming (OOP).',
+                    options: [
+                        'A programming paradigm based on objects',
+                        'A programming language for web development',
+                        'A style of writing code',
+                        'A form of database management'
+                    ]
+                },
+                {
+                    question: 'What is a class and an object in Java?',
+                    options: [
+                        'A class is a blueprint for objects, and an object is an instance of a class',
+                        'A class is an object, and an object is a blueprint for classes',
+                        'A class and an object are the same in Java',
+                        'Neither classes nor objects are used in Java'
+                    ]
+                },
+                {
+                    question: 'What are the principles of OOP in Java?',
+                    options: [
+                        'Encapsulation, Inheritance, Polymorphism, and Abstraction',
+                        'Loops, Conditions, Functions, and Arrays',
+                        'Variables, Operators, Data Types, and Control Statements',
+                        'Input, Output, File Handling, and Exception Handling'
+                    ]
+                }
+            ],
+            'dbms': [
+                {
+                    question: 'What is a Database Management System (DBMS)?',
+                    options: [
+                        'A software for managing databases',
+                        'A programming language',
+                        'A type of computer hardware',
+                        'A form of network communication'
+                    ]
+                },
+                {
+                    question: 'What are the types of databases?',
+                    options: [
+                        'Relational, NoSQL, Hierarchical, and Network',
+                        'Text-based, Image-based, Audio-based, and Video-based',
+                        'Static, Dynamic, Interactive, and Batch',
+                        'Centralized, Distributed, Parallel, and Cloud'
+                    ]
+                },
+                {
+                    question: 'Explain the concept of normalization in DBMS.',
+                    options: [
+                        'Organizing data to reduce redundancy and improve data integrity',
+                        'Encrypting data for security purposes',
+                        'Creating backup copies of databases',
+                        'Deleting unnecessary data from databases'
+                    ]
+                }
+            ]
+        };
+    
+        let currentQuestionIndex = 0;
+        const questionContainer = document.getElementById('question-container');
+    
+        // Function to start the quiz after selecting the domain
+        function startQuiz() {
+            populateQuestions();
+            document.querySelector('.domain-selection').style.display = 'none';
+        }
+    
+        // Function to populate questions based on the selected domain
+        function populateQuestions() {
+            const selectedDomain = document.getElementById('domain').value;
+            const questions = questionsByDomain[selectedDomain];
+            const question = questions[currentQuestionIndex];
+    
+            // Clear previous question
+            questionContainer.innerHTML = '';
+    
+            // Dynamically populate the current question and options
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `
+                <p>${currentQuestionIndex + 1}. ${question.question}</p>
+                <div class="options">
+                    ${question.options.map((option, i) => `
+                        <div class="option">
+                            <button onclick="selectAnswer('q${currentQuestionIndex + 1}', 'option${i + 1}')">${option}</button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            questionContainer.appendChild(questionDiv);
+        }
+    
+        // Function to handle selecting the correct answer
+        function selectAnswer(question, selectedOption) {
+            // Highlight the selected option or perform any other visual indication
+            alert(`Question ${question} - Option ${selectedOption} selected as the answer.`);
+    
+            // Move to the next question or redirect to the dashboard if all questions are answered
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questionsByDomain[document.getElementById('domain').value].length) {
+                populateQuestions();
+            } else {
+                submitQuiz();
+            }
+        }
+    
+        // Function to submit the quiz
+        function submitQuiz() {
+            // Add logic to collect and process user responses for the domain selection quiz
+    
+            // Redirect to the dashboard
+            alert("Quiz completed! Redirecting to the dashboard...");
+            window.location.href = "userdashboard.html";
+        }
+    
+        // Event listener for domain selection
+        document.getElementById('domain').addEventListener('change', startQuiz);
+    </script>
+    
+</body>
+</html>

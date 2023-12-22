@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Courses</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            margin: 20px;
+      
+            max-width: fit-content;
+            max-height:fit-content;
+        }
+
+        .course-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 2px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            background-color: #fff;
+            align-items:flex-start;
+            max-width: 700px;
+            max-height: 500px;
+         
+        }
+
+        .course-card img {
+            max-width: 15%;
+            height: auto;
+            border-radius: 2%;
+            margin-bottom: 5px;
+            
+        }
+
+        .course-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            align-content: center;
+            flex: auto;
+            display: flex;
+        }
+
+        .course-description {
+            color: #555;
+            align-items: center;
+    
+        }
+        
+
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Courses Offered</h1>
+    </header>
+
+    <div class="container">
+
+        <div class="course-card">
+            <img src="programming.jpg " alt="Course Image">
+            <div class="course-info">
+                <div class="course-title">Introduction to Programming</div>
+                <div class="course-description">
+                    Learn the basics of programming using popular languages like Python, C++, C and Java.
+                </div>
+                <p>     </p>
+                <button id="enrollButton" onclick="redirecttocourse()">Enroll Now</button>
+            </div>
+        </div>
+
+        <div class="course-card">
+            
+             <img src="web.jpg" alt="Course Image"><div class="course-info"> 
+                <div class="course-title">Web Development Fundamentals</div>
+                <div class="course-description">
+                    Explore the fundamentals of web development, including HTML, CSS, and JavaScript.
+                </div>
+                <p> </p>
+                <button id="enroll_web" onclick="redirecttoweb()">Enroll Now</button>
+            </div>
+            
+        </div>
+
+        <div class="course-card">
+            <img src="photography.jpg" alt="Course Image">
+            <div class="course-info">
+                <div class="course-title">Photography </div>
+                <div class="course-description">
+                    Explore the fundamentals of Photography.</div>
+                    <p> </p>
+                <button>Enroll Now</button>
+            </div>
+        </div>
+        
+        <div class="course-card">
+            <img src="mad.jpg" alt="Course Image">
+            <div class="course-info">
+                <div class="course-title">Mobile App Development </div>
+                <div class="course-description">
+                    Explore the fundamentals of Kotlin and Java.</div>
+                    <p>   </p>
+                <button>Enroll Now</button>
+            </div>
+        </div>
+        <div class="course-card">
+            <img src="ai.jpg" alt="Course Image">
+            <div class="course-info">
+                <div class="course-title">Generative AI </div>
+                <div class="course-description">
+                    Explore the fundamentals of Kotlin and Java.</div>
+                    <p>    </p>
+                <button>Enroll Now</button>
+            </div>
+          
+          
+              
+        </div>
+         <script>
+            function redirecttocourse(){
+                var courseurl='https://www.geeksforgeeks.org/introduction-to-programming-languages/';
+                window.location.href=courseurl;
+            }
+            function redirecttoweb()
+            {
+                var courseurl = 'webdev.html';
+                window.location.href=courseurl;
+            }
+         </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Education Platform - Quiz</title>
+    <style>
+        /* Your existing CSS styles here */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-container h2 {
+            color: #333;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options {
+            margin-top: 10px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+        }
+
+        .submit-button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>Course Recommendation Quiz</h2>
+
+    <div class="question">
+        <p>1. What is your preferred learning style?</p>
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="q1" value="visual"> Visual
+            </div>
+            <div class="option">
+                <input type="radio" name="q1" value="auditory"> Auditory
+            </div>
+            <div class="option">
+                <input type="radio" name="q1" value="kinesthetic"> Kinesthetic
+            </div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>2. How much time can you dedicate to learning per week?</p>
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="q2" value="1-5"> 1-5 hours
+            </div>
+            <div class="option">
+                <input type="radio" name="q2" value="6-10"> 6-10 hours
+            </div>
+            <div class="option">
+                <input type="radio" name="q2" value="11+"> 11+ hours
+            </div>
+        </div>
+    </div>
+
+    <!-- Add more questions and options as needed -->
+
+    <button class="submit-button" onclick="submitQuiz()">Submit</button>
+</div>
+
+<script>
+    function submitQuiz() {
+        alert("Quiz submitted! Redirecting to course recommendations...");
+        window.location.href = "quizpage2.html";
+    }
+</script>
+
+</body>
+</html>
